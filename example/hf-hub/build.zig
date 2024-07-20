@@ -1,34 +1,23 @@
 const std = @import("std");
 
 pub fn build(b: *std.Build) void {
-    const zensor = b.dependency("zensor", .{});
-    const zensor_module = zensor.module("zensor");
+    const hf_hub_dep = b.dependency("hf_hub", .{});
+    const hf_hub_module = hf_hub_dep.module("hf_hub");
 
     const target = b.standardTargetOptions(.{});
 
     const optimize = b.standardOptimizeOption(.{});
 
     const exe = b.addExecutable(.{
-        .name = "wisdom",
+        .name = "hf_hub_example",
         .root_source_file = b.path("src/main.zig"),
         .target = target,
         .optimize = optimize,
     });
-
-    exe.root_module.addImport("zensor", zensor_module);
+    exe.root_module.addImport("hf_hub", hf_hub_module);
     b.installArtifact(exe);
 
     const run_cmd = b.addRunArtifact(exe);
-
-    run_cmd.step.dependOn(b.getInstallStep());
-
-    if (b.args) |args| {
-        run_cmd.addArgs(args);
-    }
-
     const run_step = b.step("run", "Run the app");
     run_step.dependOn(&run_cmd.step);
-
-    //Huggingface
-    _ = b.addModule("hf_hub", .{ .root_source_file = .{ .src_path = .{ .owner = b, .sub_path = "huggingface/lib.zig" } } });
 }

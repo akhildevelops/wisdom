@@ -1,0 +1,17 @@
+.{
+    // Your project related fields
+    .name = "hf_hub_example",
+    .version = "0.0.0",
+
+    .dependencies = .{
+        .hf_hub = .{
+            // "../.." should be replaced with
+            .path = "../..",
+        },
+    },
+    .paths = .{
+        "build.zig",
+        "build.zig.zon",
+        "src",
+    },
+}
