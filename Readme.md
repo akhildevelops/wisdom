@@ -20,8 +20,16 @@ File has been downloaded at: /home/akhil/.cache/huggingface/hub/models--THUDM--c
 
 
 ## Library
-
-
+To use it as a library in application, first install it by
+```shell
+zig fetch --save git+https://github.com/akhildevelops/wisdom
+```
+Add below to the application's `build.zig` file
+```zig
+const hf_hub_dep = b.dependency("hf_hub", .{});
+exe.root_module.addImport("hf_hub", hf_hub_dep.module("hf_hub"));
+```
+Refer to this [example](example/hf-hub/) that imports as library
 
 ## Attention
 - This is still in active development.

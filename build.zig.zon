@@ -66,6 +66,7 @@
         "build.zig",
         "build.zig.zon",
         "src",
+        "huggingface",
         // For example...
         //"LICENSE",
         //"README.md",

@@ -1,9 +1,6 @@
 const std = @import("std");
 
 pub fn build(b: *std.Build) void {
-    const hf_hub_dep = b.dependency("hf_hub", .{});
-    const hf_hub_module = hf_hub_dep.module("hf_hub");
-
     const target = b.standardTargetOptions(.{});
 
     const optimize = b.standardOptimizeOption(.{});
@@ -14,7 +11,8 @@ pub fn build(b: *std.Build) void {
         .target = target,
         .optimize = optimize,
     });
-    exe.root_module.addImport("hf_hub", hf_hub_module);
+    const hf_hub_dep = b.dependency("hf_hub", .{});
+    exe.root_module.addImport("hf_hub", hf_hub_dep.module("hf_hub"));
     b.installArtifact(exe);
 
     const run_cmd = b.addRunArtifact(exe);

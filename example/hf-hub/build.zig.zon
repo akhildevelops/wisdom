@@ -5,7 +5,6 @@
 
     .dependencies = .{
         .hf_hub = .{
-            // "../.." should be replaced with
             .path = "../..",
         },
     },
