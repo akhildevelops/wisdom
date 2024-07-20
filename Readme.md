@@ -4,7 +4,7 @@ Command line tool and zig library to download huggingface models, datasets.
 
 
 ## Command line
-Download the binary from github releases and run it in the terminal to download any file from huggingface repo.
+Download the binary from  [latest github release](https://github.com/akhildevelops/wisdom/releases/latest) and run it in the terminal to download any file from huggingface repo.
 
 To download `config.json` from the repo [THUDM/codegeex4-all-9b](https://huggingface.co/THUDM/codegeex4-all-9b) run below:
 ```shell
