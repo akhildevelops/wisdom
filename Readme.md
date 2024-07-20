@@ -22,7 +22,7 @@ File has been downloaded at: /home/akhil/.cache/huggingface/hub/models--THUDM--c
 ## Library
 To use it as a library in application, first install it by
 ```shell
-zig fetch --save git+https://github.com/akhildevelops/wisdom
+zig fetch --save=hf_hub git+https://github.com/akhildevelops/wisdom
 ```
 Add below to the application's `build.zig` file
 ```zig
