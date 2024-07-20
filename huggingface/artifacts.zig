@@ -281,5 +281,5 @@ test "RepoDownload" {
     var repo = try Repo.init_with_repo_id("THUDM/codegeex4-all-9b", allocator);
     defer repo.deinit();
     const path = try repo.download("config.json", allocator);
-    _ = path;
+    try std.testing.expectStringEndsWith(path, "huggingface/hub/models--THUDM--codegeex4-all-9b/snapshots/6ee90cf42fbd24807825b5ff6bed9830a5a4cfb2/config.json");
 }
