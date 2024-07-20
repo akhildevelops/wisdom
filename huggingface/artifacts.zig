@@ -237,24 +237,6 @@ const Cache = struct {
     }
 };
 
-pub fn download_artifacts(model_id: []const u8, revision: ?[]const u8, allocator: std.mem.Allocator) ![]const u8 {
-    const cache_dir = try Cache.init(null, allocator);
-    var rev: []const u8 = undefined;
-    if (revision == null) {
-        rev = "main";
-    } else {
-        rev = revision.?;
-    }
-    const repo: Repo = .{ .allocator = allocator, .repo_id = model_id, .repo_type = RepoType.model, .revision = rev, .cache = cache_dir };
-    const repo_path = try cache_dir.repo_path(repo, allocator);
-    if (repo_path) |path| {
-        const config_path = try path.get("config.json", allocator);
-        if (config_path) |_| {} else {
-            repo.download("config.json");
-        }
-    } else {}
-}
-
 test "RepoID" {
     var AA = std.heap.ArenaAllocator.init(std.testing.allocator);
     const allocator = AA.allocator();
