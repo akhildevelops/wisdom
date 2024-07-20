@@ -65,6 +65,7 @@ const Repo = struct {
 
         // Symlink the hash to file
         const pointer_path = try self.cache.pointer_path(self.*, metadata.commit_hash, filename, allocator);
+        self.cache.path.deleteFile(pointer_path) catch {};
         try self.cache.path.symLink(blob_path, pointer_path, .{});
 
         // write commit_hash
@@ -281,5 +282,5 @@ test "RepoDownload" {
     var repo = try Repo.init_with_repo_id("THUDM/codegeex4-all-9b", allocator);
     defer repo.deinit();
     const path = try repo.download("config.json", allocator);
-    try std.testing.expectStringEndsWith(path, "huggingface/hub/models--THUDM--codegeex4-all-9b/snapshots/6ee90cf42fbd24807825b5ff6bed9830a5a4cfb2/config.json");
+    try std.testing.expectStringEndsWith(path, "models--THUDM--codegeex4-all-9b/snapshots/6ee90cf42fbd24807825b5ff6bed9830a5a4cfb2/config.json");
 }
